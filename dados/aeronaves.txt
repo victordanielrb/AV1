@@ -1,0 +1,49 @@
+[
+  {
+    "codigo": "A001",
+    "modelo": "FalconX",
+    "tipo": "COMERCIAL",
+    "capacidade": 120,
+    "alcance": 3000,
+    "pecas": [
+      {
+        "nome": "Motor",
+        "tipo": "NACIONAL",
+        "fornecedor": "GE",
+        "status": "EM_TRANSPORTE"
+      }
+    ],
+    "etapas": [
+      {
+        "nome": "Montagem",
+        "prazo": "10/10/2026",
+        "status": "CONCLUIDA",
+        "funcionarioIds": [
+          "2"
+        ]
+      },
+      {
+        "nome": "TesteSolo",
+        "prazo": "11/10/2026",
+        "status": "CONCLUIDA",
+        "funcionarioIds": []
+      }
+    ],
+    "testes": [
+      {
+        "tipo": "ELETRICO",
+        "resultado": "APROVADO"
+      }
+    ]
+  },
+  {
+    "codigo": "A002",
+    "modelo": "HawkM",
+    "tipo": "MILITAR",
+    "capacidade": 2,
+    "alcance": 1500,
+    "pecas": [],
+    "etapas": [],
+    "testes": []
+  }
+]
