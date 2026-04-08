@@ -1,3 +1,4 @@
+import { Database } from "../servico/Database";
 import { NivelPermissao } from "../tipo/enums";
 
 export class Funcionario {
@@ -31,7 +32,18 @@ export class Funcionario {
     return this.usuario === usuario && this.senha === senha;
   }
 
-  salvar(): void {}
+  salvar(): void {
+
+    const funcionarios = Database.carregarFuncionarios();
+    const index = funcionarios.findIndex((f) => f.id === this.id);
+    //procura o funcionario pelo id, se encontrar atualiza, senao adiciona novo
+    //aparentemente findIndex retorna -1 se nao encontrar
+    if (index !== -1 ) {
+      funcionarios[index] = this;
+    } else {
+      funcionarios.push(this);
+    }
+  }
 
   carregar(): void {}
 }

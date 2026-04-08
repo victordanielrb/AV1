@@ -22,7 +22,21 @@ export class Peca {
     this.status = novoStatus;
   }
 
-  salvar(): void {}
+  salvar(): string {
+    return JSON.stringify({
+      nome: this.nome,
+      tipo: this.tipo,
+      fornecedor: this.fornecedor,
+      status: this.status,
+    });
+  }
 
-  carregar(): void {}
+  carregar(dados: string): void {
+    const peca = JSON.parse(dados) as Partial<Peca>;
+
+    if (typeof peca.nome === "string") this.nome = peca.nome;
+    if (typeof peca.fornecedor === "string") this.fornecedor = peca.fornecedor;
+    if (peca.tipo) this.tipo = peca.tipo;
+    if (peca.status) this.status = peca.status;
+  }
 }

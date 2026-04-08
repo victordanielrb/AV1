@@ -23,7 +23,7 @@ export class Database {
   static carregarAeronaves(): Aeronave[] {
     if (!fs.existsSync(AERONAVES_FILE)) return [];
     try {
-      const data: unknown = JSON.parse(fs.readFileSync(AERONAVES_FILE, "utf-8"));
+      const data: any = JSON.parse(fs.readFileSync(AERONAVES_FILE, "utf-8"));
       return mapAeronaves(data);
     } catch {
       return [];
@@ -38,7 +38,7 @@ export class Database {
   static carregarFuncionarios(): Funcionario[] {
     if (!fs.existsSync(FUNCIONARIOS_FILE)) return [];
     try {
-      const data: unknown = JSON.parse(fs.readFileSync(FUNCIONARIOS_FILE, "utf-8"));
+      const data: any = JSON.parse(fs.readFileSync(FUNCIONARIOS_FILE, "utf-8"));
       return mapFuncionarios(data);
     } catch {
       return [];

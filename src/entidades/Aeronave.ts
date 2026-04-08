@@ -2,6 +2,7 @@ import { TipoAeronave } from "../tipo/enums";
 import { Peca } from "./Peca";
 import { Etapa } from "./Etapa";
 import { Teste } from "./Teste";
+import { Database } from "../servico/Database";
 
 export class Aeronave {
   codigo: string;
@@ -45,7 +46,18 @@ export class Aeronave {
     ].join("\n");
   }
 
-  salvar(): void {}
+  salvar(): void {
+    const aeronaves = Database.carregarAeronaves();
+    const index = aeronaves.findIndex((aero) => aero.codigo === this.codigo);
+    //procura a aeronave pelo codigo, se encontrar atualiza, senao adiciona nova
+    //aparentemente findIndex retorna -1 se nao encontrar
+    if (index !== -1 ) {
+      aeronaves[index] = this;
+    } else {
+      aeronaves.push(this);
+    }
+    Database.salvarAeronaves(aeronaves);
+  }
 
   carregar(): void {}
 }

@@ -5,28 +5,30 @@ import { Peca } from "../../entidades/Peca";
 import { Teste } from "../../entidades/Teste";
 import { StatusEtapa } from "../../tipo/enums";
 
-export function mapAeronaves(data: unknown): Aeronave[] {
+//mapeamento de entidades, dados -> objeto com tipagem e metodos 
+//deixar solto ia poluir dms 
+export function mapAeronaves(data: any): Aeronave[] {
   if (!Array.isArray(data)) return [];
 
-  return data.map((a: any) => {
-    const aeronave = new Aeronave(a.codigo, a.modelo, a.tipo, a.capacidade, a.alcance);
+  return data.map((item: any) => {
+    const aeronave = new Aeronave(item.codigo, item.modelo, item.tipo, item.capacidade, item.alcance);
 
-    aeronave.pecas = (a.pecas ?? []).map(
+    aeronave.pecas = (item.pecas ?? []).map(
       (p: any) => new Peca(p.nome, p.tipo, p.fornecedor, p.status)
     );
 
-    aeronave.etapas = (a.etapas ?? []).map((e: any) => {
+    aeronave.etapas = (item.etapas ?? []).map((e: any) => {
       const etapa = new Etapa(e.nome, e.prazo, e.status as StatusEtapa);
       etapa.funcionarioIds = e.funcionarioIds ?? [];
       return etapa;
     });
 
-    aeronave.testes = (a.testes ?? []).map((t: any) => new Teste(t.tipo, t.resultado));
+    aeronave.testes = (item.testes ?? []).map((t: any) => new Teste(t.tipo, t.resultado));
     return aeronave;
   });
 }
 
-export function mapFuncionarios(data: unknown): Funcionario[] {
+export function mapFuncionarios(data: any): Funcionario[] {
   if (!Array.isArray(data)) return [];
 
   return data.map(

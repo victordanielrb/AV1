@@ -11,6 +11,14 @@ export class Relatorio {
     cliente: string,
     dataEntrega: string
   ): void {
+
+
+    //Checka se ja existe um relatório, caso sim faz update
+    const arquivosExistentes = fs.readdirSync(".").filter(f => new RegExp(`^relatorio_${aeronave.codigo}_.*\\.txt$`).test(f));
+    if (arquivosExistentes.length > 0) {
+      const relatorioExistente = fs.readFileSync(arquivosExistentes[0], "utf-8");
+      this.conteudo = relatorioExistente;
+    }
     const linha = "=".repeat(60);
     const linhaFina = "-".repeat(60);
     let t = "";
