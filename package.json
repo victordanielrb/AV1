@@ -1,0 +1,20 @@
+{
+  "name": "aerocode",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/prompt-sync": "^4.2.3",
+    "ts-node": "^10.9.0",
+    "typescript": "^5.0.0"
+  }
+}
